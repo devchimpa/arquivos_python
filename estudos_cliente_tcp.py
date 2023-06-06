@@ -1,12 +1,22 @@
+#!/usr/bin/python3
+
 from socket import *
 
-servidor="127.0.0.1"
-porta=43210
+servidor = "192.168.1.2"
+porta = 43210
 
-msg = bytes(input("Digite algo: "), 'utf-8')
 obj_socket = socket(AF_INET, SOCK_STREAM)
 obj_socket.connect((servidor, porta))
-obj_socket.send(msg)
-resposta= obj_socket.recv(1024)
-print("Recebemos: ", resposta)
+
+while True:
+    msg = input("Digite sua mensagem: ")
+
+    if not msg:
+        break
+
+    obj_socket.send(bytes(msg, 'utf-8'))
+    resposta = obj_socket.recv(1024)
+    print("Recebido:", resposta.decode())
+
 obj_socket.close()
+
