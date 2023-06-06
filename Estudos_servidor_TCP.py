@@ -1,21 +1,31 @@
+#!/usr/bin/python3
 from socket import *
 
-servidor="127.0.0.1"
-porta=43210
+servidor = "192.168.1.2"
+porta = 43210
 
-obj_socket= socket(AF_INET, SOCK_STREAM)
+obj_socket = socket(AF_INET, SOCK_STREAM)
 obj_socket.bind((servidor, porta))
 obj_socket.listen(2)
 
-print("aguardando cliente...")
+print("Aguardando conexão...")
 
-while true:
-        con, cliente = obj-socket.accept()
-        print("Conectado com :" , cliente)
-        while true:
-                msg_recebida= str(con.recv(1024))
-                print("Recebemos: ", msg_recebida)
-                msg_enviada= b'Olá ,cliente'
-                con.send(msg_enviada)
-                break
-        con.close()
+while True:
+    con, cliente = obj_socket.accept()
+    print("Conectado com:", cliente)
+
+    while True:
+        msg_recebida = con.recv(1024).decode()
+        print("Recebido:", msg_recebida)
+
+        if not msg_recebida:
+            break
+
+        msg_entrada = input("Digite a resposta: ")
+
+        if not msg_entrada:
+            break
+
+        con.send(msg_entrada.encode())
+
+    con.close()
