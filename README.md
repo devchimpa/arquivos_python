@@ -1,6 +1,6 @@
-Arquivos de estudos em Python.
-
+<h2> Arquivos de estudos em Python </h2>
 Este repositório contém alguns códigos de cursos, treinos e estudos.
+Alguns códigos servem para reaproveitamento em outros programas e para acelerar o trabalho.
 
  <div align="center">
   
